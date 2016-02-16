@@ -1,0 +1,48 @@
+# USB Specific Configuration Support Kconfig
+
+config PANTECH_ANDROID_OTG
+	tristate "Support SKY/Pantech Android OTG"
+	depends on USB_G_ANDROID
+	default n
+	help
+	  SKY/Pantech Android USB OTG Specific function support
+
+config ANDROID_PANTECH_USB_OTG_INTENT
+	depends on PANTECH_ANDROID_OTG
+	bool "USB OTG Intent Support"
+	default y
+	help
+		Support Pantech USB OTG Intent
+
+config PANTECH_ANDROID_USB
+	tristate "USB Function Driver support"
+	default y
+	help
+		Say "y" to link the driver statically, or "m" to build
+		as a part of "g_android"	
+
+config PANTECH_ANDROID_MTP
+	tristate "Storage Gadget USB MTP Function Support"
+	default y
+	help
+		Say "y" to link the driver statically, or "m" to build
+		as a part of "g_android"
+
+config PANTECH_ANDROID_OBEX
+	tristate "Serial Gadget USB OBEX Function Support"
+	default y
+	help
+		Say "y" to link the driver statically, or "m" to build
+		as a part of "g_android"
+
+config PANTECH_USB_TUNE_SIGNALING_PARAM
+	bool "USB PHY Parameter tuning Support"
+	default y
+	help
+		Support USB tuning.
+
+config PANTECH_ANDROID_FACTORY_MODE
+	bool "Composite Factory Mode for Pantech USB Driver"
+	default y
+	help 		
+		Support Pantech Factory Mode USB Driver.

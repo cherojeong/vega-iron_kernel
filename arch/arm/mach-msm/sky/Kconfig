@@ -1,0 +1,34 @@
+config MACH_SKY
+	bool
+
+menu "SKY Board Selection"
+source "arch/arm/mach-msm/sky/Kconfig.board"
+endmenu
+
+
+menu "Pantech / SKY Specific Patches"
+
+config SKY_CRASH_HANDLER
+	tristate "Support SKY/PANTECH Crash Handler"
+	depends on !S390 && !UML && HAVE_MEMBLOCK && MSM_DLOAD_MODE
+	select ANDROID_PERSISTENT_RAM
+	default n
+	help
+	  SKY/PANTECH Crash Handler by cherojeong@gmail.com
+
+config SKY_SERIAL_MSM_GSBI5_SUPPORT
+	tristate "Support MSM Serial Console using GSBI5 Port."
+	depends on SERIAL_MSM_HSL_CONSOLE
+	default n
+	help
+	  SKY/PANTECH Serial Console Support by cherojeong@gmail.com
+
+menu "USB Specific Configuration"
+source "arch/arm/mach-msm/sky/Kconfig.usb"
+endmenu
+
+menu "CAMERA Specific Configuration"
+source "arch/arm/mach-msm/sky/Kconfig.camera"
+endmenu
+
+endmenu

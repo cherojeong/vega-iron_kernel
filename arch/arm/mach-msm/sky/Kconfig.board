@@ -1,0 +1,8 @@
+
+# Inlcude the specific Kconfig file for SKY board
+#
+# VEGA(UBUNTU)
+source "arch/arm/mach-msm/sky/vega/Kconfig"
+
+config MACH_SKY_DUMMY
+	bool "NONE (No device)"

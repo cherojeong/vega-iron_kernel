@@ -1,0 +1,18 @@
+config PANTECH_CAMERA
+	bool "Camera Common Support Function"
+	select PANTECH_CAMERA_SENSOR
+	default y
+	help
+		VEGA(SKY) Camera Sensor Support Function & Feature
+
+config PANTECH_CAMERA_TUNER
+	bool "Camera Tune Function"
+	default n
+	help
+		Common Tune Camera parameter function Support.
+
+config PANTECH_CAMERA_SENSOR
+	bool "VEGA(SKY) Camera Common Funcion I2C & Control for Sensors"
+	default n
+	help
+		Common Sensor Control & Sensor I2C Function for Sensors.

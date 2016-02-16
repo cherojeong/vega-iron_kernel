@@ -1,0 +1,8 @@
+config MACH_APQ8064_VEGA
+	depends on ARCH_APQ8064
+	select MACH_SKY
+	bool "MSM8064 VEGA(UBUNTU)"
+	help
+	  Support for the SKY VEGA SERIES device.
+	  For Porting Ubuntu Touch Developer Preview.
+	  Created by cherojeong@gmail.com
