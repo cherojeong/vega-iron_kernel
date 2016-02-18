@@ -411,7 +411,7 @@ apq8064_pm8921_bms_pdata __devinitdata = {
 };
 static struct pm8xxx_vibrator_platform_data
 apq8064_pm8xxx_vib_pdata = {
-                .initial_vibrate_ms =500,
+                .initial_vibrate_ms =100,
                 .max_timeout_ms =15000,
                 .level_mV = 3000,
 };
