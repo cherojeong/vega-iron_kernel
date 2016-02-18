@@ -32,6 +32,8 @@
 #define VIB_MAX_LEVEL_mV	3100
 #define VIB_MIN_LEVEL_mV	1200
 
+#define CONFIG_VIBRATOR_WORKAROUND /* ubuntu vibrator timeout ms value is 10mS , it is need to 25ms minimum value */
+
 struct pm8xxx_vib {
 	struct hrtimer vib_timer;
 	struct timed_output_dev timed_dev;
@@ -122,6 +124,9 @@ static int pm8xxx_vib_set(struct pm8xxx_vib *vib, int on)
 	if (on) {
 		val = vib->reg_vib_drv;
 		val |= ((vib->level << VIB_DRV_SEL_SHIFT) & VIB_DRV_SEL_MASK);
+#ifdef CONFIG_VIBRATOR_WORKAROUND		
+		val = 0xf8;		
+#endif		
 		rc = pm8xxx_vib_write_u8(vib, val, VIB_DRV);
 		if (rc < 0)
 			return rc;
@@ -158,6 +163,10 @@ retry:
 	else {
 		value = (value > vib->pdata->max_timeout_ms ?
 				 vib->pdata->max_timeout_ms : value);
+#ifdef CONFIG_VIBRATOR_WORKAROUND
+		value = (value < vib->pdata->initial_vibrate_ms ?
+			25 : value); /* minimum timeout ms value */
+#endif
 		vib->state = 1;
 		hrtimer_start(&vib->vib_timer,
 			      ktime_set(value / 1000, (value % 1000) * 1000000),
